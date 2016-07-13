@@ -20,9 +20,9 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
-	<key>NSTransportSecurity</key>
+	<key>NSAppTransportSecurity</key>
 	<dict>
-		<key>NSAllowArbitaryLoads</key>
+		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
 	<key>LSRequiresIPhoneOS</key>
