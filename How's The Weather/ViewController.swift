@@ -15,6 +15,8 @@ class ViewController: UIViewController {
     
     @IBAction func findWeather(sender: AnyObject) {
         
+        var wasSuccessful = false
+        
         let attemptedUrl = NSURL(string: "http://www.weather-forecast.com/locations/" + cityNameTextField.text!.stringByReplacingOccurrencesOfString(" ", withString: "-") + "/forecasts/latest")
         
         if let url = attemptedUrl {
@@ -33,6 +35,8 @@ class ViewController: UIViewController {
                         
                         if weatherArray.count > 1 {
                             
+                            wasSuccessful = true
+                            
                             let weatherSummary = weatherArray[0].stringByReplacingOccurrencesOfString("&deg;", withString: "º")
                             
                             dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -44,9 +48,20 @@ class ViewController: UIViewController {
                     }
                 }
                 
+                if wasSuccessful == false {
+                    
+                    self.resultLabel.text = "Couldn't find the weather for that city. Please try again."
+                    
+                }
+                
             }
 
             task.resume()
+            
+        } else {
+            
+            self.resultLabel.text = "Couldn't find the weather for that city. Please try again."
+            
         }
 
     }
