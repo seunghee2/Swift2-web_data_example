@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var cityNameTextField: UITextField!
     @IBOutlet weak var resultLabel: UILabel!
@@ -69,6 +69,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.cityNameTextField.delegate = self
+        
         UIApplication.sharedApplication().statusBarStyle = .LightContent
         
     }
@@ -77,6 +79,12 @@ class ViewController: UIViewController {
         super.viewWillDisappear(animated)
         
         UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.Default
+        
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        
+        self.view.endEditing(true)
         
     }
 
